@@ -1,15 +1,17 @@
-#OpenWis
+# OpenWis
 
-From [about OpenWis](http://wis.bom.gov.au/openwis-user-portal/srv/en/about.home). 
+From [about OpenWis](http://wis.bom.gov.au/openwis-user-portal/srv/en/about.home).
 
 OpenWIS is an implementation of WMO Information System (WIS) and aims to perform the three functions required by the WIS, i.e. GISC, DCPC and NC. It is originally developed by AKKA Information System (France) on behalf of OpenWIS Association (with UKMO, MF, BoM, KMA, and MFI as the founding members)
 
-##1. Requirements
+![](https://github.com/pinkieee/openwis/workflows/.github/workflows/maven.yml/badge.svg)
+
+## 1. Requirements
 
 * Oracle JDK 1.7
 * Maven 2.2.1
 
-###Environment variables:
+### Environment variables:
 
 The JAVA_HOME  should be set with the valid JDK path.
 
@@ -17,7 +19,7 @@ The MAVEN_OPTS should be set with "-Xms256m -Xmx512m -XX:MaxPermSize=256m" to av
 
 The "mvn" command should be available in the terminal, maybe you should add the <maven home>/bin directory to the PATH
 
-##2. Sources Contents
+## 2. Sources Contents
 
 **Repository Contents :**
 
@@ -40,7 +42,7 @@ The "mvn" command should be available in the terminal, maybe you should add the 
              |+-- openwis-dataservice-server-test (not used)
              |+-- openwis-dataservice-server-webapp
       |+--openwis-factorytests
-      |+--openwis-harness 
+      |+--openwis-harness
           |+--openwis-harness-client
           |+--openwis-harness-dissemination
           |+--openwis-harness-localdatasource
@@ -78,20 +80,20 @@ The "mvn" command should be available in the terminal, maybe you should add the 
 * **resources:** contains jars required for build but not available on Public Maven repositories
 
 **Harness WSDL**
- 
+
 * **The harness dissemination WSDL and WSD:** openwis-harness/openwis-harness-dissemination/src/wsdl/
 * **The harness localdatasource WSDL and WSD:** openwis-harness/openwis-harness-localdatasource/src/wsdl/
 * **The harness MSSFSS WSDL and WSD:** openwis-harness/openwis-harness-mssfss/src/wsdl/
 * **The harness subselectionparameters WSDL and WSD:** openwis-harness/openwis-harness-subselectionparameters/src/wsdl/
 
 
-##3. Building OpenWIS
+## 3. Building OpenWIS
 
-**#1. Installing JavaEE**
+**1. Installing JavaEE**
 
 Javee is a library that is shipped with installations of GlassFish but is not available in any pulic Maven repository. In a terminal launch the command `mvn clean exec:exec`
 
-**#2.Launch the Maven build**
+**2.Launch the Maven build**
 
  In a terminal, go into the root directory and launch the command: `mvn clean install -P openwis -DskipTests -Dfile.encoding=UTF-8`
 
@@ -127,7 +129,7 @@ After few minutes the build should finished successfully like this:
 	[INFO] openwis-dataservice-server-webapp ..................... SUCCESS [1.295s]
 	[INFO] openwis-dataservice-server-ear ........................ SUCCESS [0.515s]
 	[INFO] openwis-dataservice-config ............................ SUCCESS [2.621s]
-	[INFO] openwis-portal-client ................................. SUCCESS [17.862s]	
+	[INFO] openwis-portal-client ................................. SUCCESS [17.862s]
 	[INFO] GeoNetwork opensource ................................. SUCCESS [0.000s]
 	[INFO] Caching xslt module ................................... SUCCESS [0.514s]
 	[INFO] Jeeves modules ........................................ SUCCESS [4.181s]
@@ -147,10 +149,10 @@ After few minutes the build should finished successfully like this:
 	[INFO] Total time: 3 minutes 43 seconds
 	[INFO] Finished at: Tue Dec 01 13:24:46 GMT 2015
 	[INFO] Final Memory: 237M/416M
-	[INFO] ------------------------------------------------------------------------	
-	
-**#3. Generate the admin portal*	
-	
+	[INFO] ------------------------------------------------------------------------
+
+**3. Generate the admin portal*
+
 In a terminal, go to the root directory and launch the command: `mvn clean install -P admin -DskipTests -Dfile.encoding=UTF-8`
 
 	[INFO] ------------------------------------------------------------------------
@@ -167,7 +169,7 @@ In a terminal, go to the root directory and launch the command: `mvn clean insta
 	[INFO] Final Memory: 42M/302M
 	[INFO] ------------------------------------------------------------------------
 
-**#4  Getting built artifacts**
+**4  Getting built artifacts**
 
 * **dataservice EAR:** <rootdir>/openwis-dataservice/openwis-dataservice-server/openwis-dataservice-server-ear/target/openwis-dataservice.ear
 * **dataservice configs:** <rootdir>/openwis-dataservice/openwis-dataservice-config/target/openwis-dataservice-config-files.zip
@@ -177,15 +179,15 @@ In a terminal, go to the root directory and launch the command: `mvn clean insta
 * **user portal WAR:** <rootdir>/openwis-metadataportal/openwis-portal/openwis-user-portal/openwis-portal-user.war
 * **admin portal WAR:** <rootdir>/openwis-metadataportal/openwis-portal/openwis-admin-portal/openwis-portal-admin.war
 * **SolR search WAR:** <rootdir>/openwis-metadataportal/openwis-portal-solr/target/openwis-portal-solr.war
-* **staging post WAR:** <rootdir>/openwis-stagingpost/target/stagingPost.war 
+* **staging post WAR:** <rootdir>/openwis-stagingpost/target/stagingPost.war
 * **Management Service:** <rootdir>/openwis-management/openwis-management-service/openwis-management-service-ear/target/openwis-management-service.ear
 
-**#5 Changing Verison Number**
+**5 Changing Verison Number**
 
 In a terminal, go into the root directory and launch the command: `mvn versions:set -DnewVersion=0.0.1-SNAPSHOT -P openwis` or whatever version you wish to change the project to.
 In some cases, you may find that OpenWIS complains about missing dependencies, should this happen try running 'mvn versions:set -DnewVersion=0.0.1-SNAPSHOT -P openwis' followed by 'mvn versions:set -DnewVersion=0.0.1-SNAPSHOT -P admin'
 
-**#6 Maven Releasing **
+**6 Maven Releasing **
 
 Maven releasing for OpenWIS is two step process as the portal requires the build to be run twice (once for admin portal and once for the user portal).
 
@@ -193,11 +195,11 @@ In a terminal, go into the root directory and launch the command: `mvn -Dresume=
 
 This will not deploy to the CloudBees repo as there are currentl permissions issues
 
- 
-**#7 Running SonarQube**
- 
+
+**7 Running SonarQube**
+
 In a terminal, go into the root directory and launch the command: `mvn sonar:sonar`. Because there is currently no central SonarQube via CloudBees, you need to have your local SonarQube settings
-configured in you ~/.m2/settings.xml. 
+configured in you ~/.m2/settings.xml.
 
 This does take a while given the number of modules that need to run.
 
@@ -206,5 +208,3 @@ Copyright and License
 (C) Copyright OpenWIS Association AISBL.
 
 OpenWIS® is free software: you can redistribute it and/or modify it under the terms of the License specified for each OpenWIS® Project (see [LICENSE](./LICENSE)).
-
- 
