@@ -17,5 +17,5 @@ jobs:
       run: mvn clean exec:exec
     - name: Build with Maven
       run: mvn clean install -P openwis -DskipTests -Dfile.encoding=UTF-8
-    - name: Echo something
-      run: echo 'The time was ${{ steps.hello.outputs.time }}.'
+      env: 
+        MAVEN_OPTS: -Xms256m -Xmx512m -XX:MaxPermSize=256m
